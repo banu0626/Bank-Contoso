@@ -21,7 +21,6 @@ app.use(express.json());
     {},
     { sort: { _id: -1 } },
     (err, data) => {
-    //    console.log(data.loannumber.slice(-3));
        res.send(data)
        
     },)
@@ -38,11 +37,10 @@ app.use(express.json());
 // adding New Loan
  app.post('/newloan',(req,res) => {
     MongoClient.connect(url,function(err,conn){
-    // var value=setloannumber();
     var db = conn.db("delta");
     db.collection('applications').insertOne({
      serialno:req.body.serialno,
-    //  serialno:100,
+
      details:req.body
  },(err,data)=>{
      res.send(data)
